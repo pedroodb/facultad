@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1ca4d1</color>
+    <color name="colorPrimaryDark">#126986</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="verde">#00ff15</color>
+    <color name="verde_apagado">#014907</color>
+    <color name="rojo">#ff0000</color>
+    <color name="rojo_apagado">#740404</color>
+    <color name="amarillo">#fff200</color>
+    <color name="amarillo_apagado">#977f07</color>
+    <color name="azul">#0022ff</color>
+    <color name="azul_apagado">#0b1973</color>
+    <color name="boton">#a6f0f5</color>
+</resources>

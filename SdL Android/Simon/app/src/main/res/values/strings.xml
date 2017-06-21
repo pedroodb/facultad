@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Simon</string>
+    <string name="elegir_n">Elige el nivel de dificultad</string>
+    <string name="facil">Facil</string>
+    <string name="medio">Medio</string>
+    <string name="dificil">Dificil</string>
+    <string name="fin">Fin del juego</string>
+    <string name="volver">Volver al Inicio</string>
+</resources>
