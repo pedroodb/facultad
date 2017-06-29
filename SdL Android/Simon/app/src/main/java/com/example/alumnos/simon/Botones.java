@@ -5,6 +5,9 @@ import android.os.Handler;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,6 +36,45 @@ public class Botones extends AppCompatActivity {
             iniciarTimer();
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater mi = getMenuInflater();
+        mi.inflate(R.menu.menu_ppal,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.dificil){
+            Intent i = new Intent(this,Botones.class);
+            i.putExtra("tiempo",700);
+            i.putExtra("resta",50);
+            startActivity(i);
+            this.finish();
+        }
+        if(item.getItemId() == R.id.medio){
+            Intent i = new Intent(this,Botones.class);
+            i.putExtra("tiempo",500);
+            i.putExtra("resta",0);
+            startActivity(i);
+            this.finish();
+        }
+        if(item.getItemId() == R.id.facil){
+            Intent i = new Intent(this,Botones.class);
+            i.putExtra("tiempo",750);
+            i.putExtra("resta",0);
+            startActivity(i);
+            this.finish();
+        }
+        if(item.getItemId() == R.id.salir){
+            this.finish();
+        }
+        if(item.getItemId() == R.id.mejPuntajes){
+
+        }
+        return true;
     }
 
     Random r = new Random();
