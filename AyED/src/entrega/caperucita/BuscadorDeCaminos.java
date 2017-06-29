@@ -50,6 +50,6 @@ public class BuscadorDeCaminos {
 				}
 			}
 		}
-		camino.eliminarEn(camino.tamanio()-1);
+		camino.eliminarEn(camino.tamanio());
 	}
 }
