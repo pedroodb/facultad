@@ -18,12 +18,14 @@
         android:textSize="@dimen/tam_titulo"
         android:text="@string/fin"
         android:gravity="center"/>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/tam_desc"
-        android:gravity="center"
-        android:id="@id/puntos"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/tam_desc"
+            android:gravity="center"
+            android:id="@id/puntos"/>
+
 
     <Button
         android:id="@+id/button"

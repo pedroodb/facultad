@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Botones" />
-        <activity android:name=".Fin"></activity>
+        <activity android:name=".Fin" />
+        <activity android:name=".MejoresPuntajes"></activity>
     </application>
 
 </manifest>

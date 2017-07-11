@@ -1,10 +1,11 @@
 package com.example.alumnos.simon;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,19 +24,45 @@ public class Botones extends AppCompatActivity {
     ArrayDeque<Integer> cola= new ArrayDeque<Integer>();
     int tiempo;
     int resta;
+    int dificultad;
+    int sound1;
+    int sound2;
+    int sound3;
+    int sound4;
+    SoundPool sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_botones);
         Bundle datos = getIntent().getExtras();
+        sp = new SoundPool( 5, AudioManager.STREAM_MUSIC , 0);
+        sound1 = sp.load(this,R.raw.boton1,1);
+        sound2 = sp.load(this,R.raw.boton2,1);
+        sound3 = sp.load(this,R.raw.boton3,1);
+        sound4 = sp.load(this,R.raw.boton4,1);
         if(datos!=null){
             tiempo=datos.getInt("tiempo");
             resta=datos.getInt("resta");
+            if(resta!=0){
+                dificultad = 2;
+            }
+            else{
+                if(tiempo==500){
+                    dificultad = 1;
+                }
+                else dificultad = 0;
+            }
             cola.add(-1);
             iniciarTimer();
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
     }
 
     @Override
@@ -72,7 +99,9 @@ public class Botones extends AppCompatActivity {
             this.finish();
         }
         if(item.getItemId() == R.id.mejPuntajes){
-
+            Intent i = new Intent(this,MejoresPuntajes.class);
+            startActivity(i);
+            this.finish();
         }
         return true;
     }
@@ -124,6 +153,7 @@ public class Botones extends AppCompatActivity {
             }else{
                 Intent i = new Intent(this,Fin.class);
                 i.putExtra("puntaje",puntaje);
+                i.putExtra("dificultad",dificultad);
                 startActivity(i);
                 this.finish();
             }
@@ -168,15 +198,19 @@ public class Botones extends AppCompatActivity {
         switch (numB){
             case 0: b=(Button) findViewById(R.id.bot0);
                 b.setBackgroundColor(getResources().getColor(R.color.verde));
+                sp.play(sound1,1,1,1,0,0);
                 break;
             case 1: b=(Button) findViewById(R.id.bot1);
                 b.setBackgroundColor(getResources().getColor(R.color.rojo));
+                sp.play(sound2,1,1,1,0,0);
                 break;
             case 2: b=(Button) findViewById(R.id.bot2);
                 b.setBackgroundColor(getResources().getColor(R.color.amarillo));
+                sp.play(sound3,1,1,1,0,0);
                 break;
             case 3: b=(Button) findViewById(R.id.bot3);
                 b.setBackgroundColor(getResources().getColor(R.color.azul));
+                sp.play(sound4,1,1,1,0,0);
                 break;
         }
     }
@@ -186,15 +220,19 @@ public class Botones extends AppCompatActivity {
         switch (numB){
             case 0: b=(Button) findViewById(R.id.bot0);
                 b.setBackgroundColor(getResources().getColor(R.color.verde_apagado));
+                sp.stop(sound1);
                 break;
             case 1: b=(Button) findViewById(R.id.bot1);
                 b.setBackgroundColor(getResources().getColor(R.color.rojo_apagado));
+                sp.stop(sound2);
                 break;
             case 2: b=(Button) findViewById(R.id.bot2);
                 b.setBackgroundColor(getResources().getColor(R.color.amarillo_apagado));
+                sp.stop(sound3);
                 break;
             case 3: b=(Button) findViewById(R.id.bot3);
                 b.setBackgroundColor(getResources().getColor(R.color.azul_apagado));
+                sp.stop(sound4);
                 break;
         }
     }
@@ -213,7 +251,6 @@ public class Botones extends AppCompatActivity {
             Ctemp.add(cola.poll());
         }
         outState.putIntegerArrayList("Cola",Ctemp);
-        handler.removeCallbacks(runnable);
 }
 
     @Override
