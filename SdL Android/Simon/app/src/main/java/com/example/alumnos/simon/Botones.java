@@ -6,12 +6,14 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -141,6 +143,9 @@ public class Botones extends AppCompatActivity {
                 cola.removeFirst();
                 cola.add(bot);
                 if(cola.peek()==-1){
+                    Toast cor =  Toast.makeText(this,"Correcto!",Toast.LENGTH_SHORT);
+                    cor.setGravity(Gravity.TOP,0,0);
+                    cor.show();
                     puntaje++;
                     cola.add(-1);
                     ok= true;
@@ -148,7 +153,13 @@ public class Botones extends AppCompatActivity {
                     if (tiempo > 150){
                         tiempo= tiempo-resta;
                     }
-                    iniciarTimer();
+                    Handler h = new Handler();
+                    handler.postDelayed(runnable= new Runnable() {
+                        @Override
+                        public void run() {
+                            iniciarTimer();
+                        }
+                    }, 1500);
                 }
             }else{
                 Intent i = new Intent(this,Fin.class);
